@@ -29,5 +29,5 @@ defmodule Texter.Texter do
 
   # restructure format - Last Name, First Name, Gender, DOB, Favorite Colour
   # sort
-  # print new file or append if exists
+  # save new file or append if exists
 end
