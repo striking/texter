@@ -1,24 +1,17 @@
 defmodule Texter.SortHelper do
-  alias Texter.Parser
 
-  @spec sort_by_gender(list(map)) :: list(String.t())
+  @spec sort_by_gender(list(map)) :: list(map)
   def sort_by_gender(player_list) do
-    player_list
-    |> Enum.sort_by(&({&1.gender, &1.last_name}))
-    |> Enum.map(&Parser.format_output/1)
+    Enum.sort_by(player_list, &{&1.gender, &1.last_name})
   end
 
   @spec sort_by_last_name(list(map)) :: list(String.t())
   def sort_by_last_name(player_list) do
-    player_list
-    |> Enum.sort_by(&(&1.last_name))
-    |> Enum.map(&Parser.format_output/1)
+    Enum.sort_by(player_list, &(&1.last_name))
   end
 
   @spec sort_by_birthdate(list(map)) :: list(String.t())
   def sort_by_birthdate(player_list) do
-    player_list
-    |> Enum.sort_by(&(&1.dob))
-    |> Enum.map(&Parser.format_output/1)
+    Enum.sort_by(player_list, &(&1.dob))
   end
 end
