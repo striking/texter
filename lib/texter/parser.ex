@@ -72,7 +72,7 @@ defmodule Texter.Parser do
   end
 
   @spec check_format_and_standardise(list(String.t())) :: fun()
-  def check_format_and_standardise(player_list) when is_list(player_list) do
+  defp check_format_and_standardise(player_list) when is_list(player_list) do
     cond do
       String.match?(List.first(player_list), ~r/\|/) ->
         restructure_pipe_format_files(player_list)
@@ -80,12 +80,14 @@ defmodule Texter.Parser do
       String.match?(List.first(player_list), ~r/\,/) ->
         restructure_comma_format_files(player_list)
 
-      true ->
+      String.match?(List.first(player_list), " ") ->
         restructure_space_format_files(player_list)
+
+      true -> "error, no matching format in: #{inspect(player_list)}"
     end
   end
 
-  def check_format_and_standardise({:error, msg}), do: msg
+  defp check_format_and_standardise({:error, msg}), do: msg
 
   @spec restructure_space_format_files(list(String.t())) :: list()
   def restructure_space_format_files(player_list) when is_list(player_list) do

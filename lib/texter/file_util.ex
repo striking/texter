@@ -3,8 +3,8 @@ defmodule Texter.FileUtil do
   alias Texter.Parser
   alias Texter.SortHelper
 
-  @spec handle_file(String.t()) :: {:ok, String.t()} | {:error, String.t()}
-  def handle_file(filename) do
+  @spec read_file(String.t()) :: {:ok, String.t()} | {:error, String.t()}
+  def read_file(filename) do
     case File.read(Path.join(File.cwd!(), "/priv/" <> filename)) do
       {:ok, file_data} ->
         {:ok, file_data}

@@ -6,7 +6,7 @@ defmodule Texter do
           {:ok, boolean} | {:error, String.t}
   def read_files_and_save_single_output(filename) do
     filename
-    |> FileUtil.handle_file()
+    |> FileUtil.read_file()
     |> Parser.parse_txt_file()
     |> FileUtil.write_sorted_player_list_to_file()
   end
